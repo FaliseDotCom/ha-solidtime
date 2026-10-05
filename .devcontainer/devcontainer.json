@@ -1,0 +1,41 @@
+{
+  "name": "solidtime app development",
+  "image": "ghcr.io/home-assistant/devcontainer:6-apps",
+  "overrideCommand": false,
+  "remoteUser": "vscode",
+  "appPort": [ "7123:8123", "7357:4357", "8000:8000" ],
+  "postStartCommand": "bash devcontainer_bootstrap",
+  "runArgs": [ "-e", "GIT_EDITOR=code --wait", "--privileged" ],
+  "workspaceFolder": "/mnt/supervisor/apps/local/${localWorkspaceFolderBasename}",
+  "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind,consistency=cached",
+  "containerEnv":
+  {
+    "WORKSPACE_DIRECTORY": "${containerWorkspaceFolder}",
+    "SUPERVISOR_CHANNEL": "stable"
+  },
+  "customizations":
+  {
+    "vscode":
+    {
+      "extensions": [ "timonwong.shellcheck", "redhat.vscode-yaml" ],
+      "settings":
+      {
+        "terminal.integrated.profiles.linux":
+        {
+          "zsh":
+          {
+            "path": "/usr/bin/zsh"
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "files.trimTrailingWhitespace": true
+      }
+    }
+  },
+  "mounts": [
+    "type=volume,target=/var/lib/docker",
+    "type=volume,target=/var/lib/containerd",
+    "type=volume,target=/mnt/supervisor",
+    "type=tmpfs,target=/tmp"
+  ]
+}

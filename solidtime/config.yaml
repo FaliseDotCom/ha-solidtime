@@ -1,0 +1,43 @@
+name: solidtime
+version: "0.21.0"
+slug: solidtime
+description: Modern open-source time tracker for freelancers and teams, with a bundled database.
+url: https://github.com/FaliseDotCom/ha-solidtime/tree/main/solidtime
+homeassistant: 2026.7.0
+arch:
+  - aarch64
+  - amd64
+startup: application
+boot: auto
+init: true
+timeout: 90
+backup: cold
+ports:
+  8000/tcp: 8000
+webui: http://[HOST]:[PORT:8000]
+watchdog: http://[HOST]:[PORT:8000]/health-check/up
+options:
+  app_url: http://homeassistant.local:8000
+  trusted_hosts: ""
+  trusted_proxies: 127.0.0.1,172.30.32.0/23
+  registration: invite-only
+  admin_name: Administrator
+  admin_email: ""
+  admin_password: ""
+  super_admins: ""
+schema:
+  app_url: url
+  trusted_hosts: str?
+  trusted_proxies: str?
+  registration: list(invite-only|off|on)
+  admin_name: str?
+  admin_email: str?
+  admin_password: password?
+  super_admins: str?
+  mail_host: str?
+  mail_port: port?
+  mail_encryption: list(tls|ssl|none)?
+  mail_username: str?
+  mail_password: password?
+  mail_from_address: email?
+  gotenberg_url: url?

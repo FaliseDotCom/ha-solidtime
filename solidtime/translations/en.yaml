@@ -1,0 +1,67 @@
+configuration:
+  app_url:
+    name: solidtime address
+    description: >-
+      The address you open solidtime on, for example http://homeassistant.local:8000 or
+      https://time.example.com behind a proxy. Used in emails and links; requests on other host
+      names are refused unless they are listed under trusted hosts.
+  trusted_hosts:
+    name: Trusted hosts
+    description: >-
+      Comma-separated extra host names solidtime may be reached on, besides the one in the
+      solidtime address, for example 192.168.1.10,homeassistant. Use *.example.com for all subdomains.
+  trusted_proxies:
+    name: Trusted proxies
+    description: >-
+      Comma-separated IP addresses or ranges of reverse proxies whose X-Forwarded-* headers
+      solidtime may trust. The default covers proxies running as other Home Assistant apps.
+  registration:
+    name: Registration
+    description: >-
+      Who may create an account: invite-only (people invited to an organization), off (nobody;
+      only the first account exists), or on (anyone who can reach solidtime).
+  admin_name:
+    name: Administrator name
+    description: Display name of the first account. Only used when solidtime has no users yet.
+  admin_email:
+    name: Administrator email
+    description: >-
+      Email address of the first account, used to log in. Only used when solidtime has no users
+      yet; you can clear it after the first start.
+  admin_password:
+    name: Administrator password
+    description: >-
+      Password for the first account, at least 8 characters. Only used when solidtime has no
+      users yet; change it later inside solidtime.
+  super_admins:
+    name: Super administrators
+    description: >-
+      Comma-separated email addresses of accounts that may open the instance administration
+      panel at /admin.
+  mail_host:
+    name: Mail server
+    description: >-
+      Host name of the SMTP server solidtime sends email through, for example smtp.example.com.
+      Leave empty to disable email; messages then appear in the log.
+  mail_port:
+    name: Mail server port
+    description: Port of the SMTP server. Defaults to 587.
+  mail_encryption:
+    name: Mail encryption
+    description: tls for STARTTLS (usually port 587), ssl for implicit TLS (usually port 465), or none.
+  mail_username:
+    name: Mail user name
+    description: User name for the SMTP server, if it requires one.
+  mail_password:
+    name: Mail password
+    description: Password for the SMTP server, if it requires one.
+  mail_from_address:
+    name: Sender email address
+    description: Address solidtime sends emails from, for example solidtime@example.com.
+  gotenberg_url:
+    name: Gotenberg address
+    description: >-
+      Address of a Gotenberg server, for example http://192.168.1.10:3000, used to export reports
+      as PDF. Leave empty to disable PDF exports.
+network:
+  8000/tcp: solidtime web interface

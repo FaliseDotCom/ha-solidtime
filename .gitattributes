@@ -1,0 +1,3 @@
+# Scripts and configuration run inside Linux containers: always use LF.
+* text=auto eol=lf
+*.png binary

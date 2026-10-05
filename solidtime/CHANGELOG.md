@@ -1,0 +1,18 @@
+# Changelog
+
+All notable changes to this app are documented here. The version number is the solidtime
+version the app contains; see the
+[solidtime releases](https://github.com/solidtime-io/solidtime/releases) for changes in
+solidtime itself.
+
+## 0.21.0
+
+First release.
+
+- solidtime 0.21.0 with a bundled PostgreSQL 17 database.
+- Web server, scheduler and queue worker in one app.
+- Creates the first account from the app options, in the Home Assistant time zone.
+- Generates the encryption and OAuth keys, and the OAuth clients for API tokens and the
+  desktop app.
+- Optional email through any SMTP server, and optional PDF exports through Gotenberg.
+- Opens through **Open web UI**; English and Dutch option descriptions.

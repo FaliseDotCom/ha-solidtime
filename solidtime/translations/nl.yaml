@@ -1,0 +1,68 @@
+configuration:
+  app_url:
+    name: Adres van solidtime
+    description: >-
+      Het adres waarop je solidtime opent, bijvoorbeeld http://homeassistant.local:8000 of
+      https://tijd.example.com achter een proxy. Wordt gebruikt in e-mails en links; verzoeken op
+      andere hostnamen worden geweigerd, tenzij ze bij de vertrouwde hostnamen staan.
+  trusted_hosts:
+    name: Vertrouwde hostnamen
+    description: >-
+      Kommagescheiden extra hostnamen waarop solidtime bereikbaar is, naast die in het adres van
+      solidtime, bijvoorbeeld 192.168.1.10,homeassistant. Gebruik *.example.com voor alle subdomeinen.
+  trusted_proxies:
+    name: Vertrouwde proxy's
+    description: >-
+      Kommagescheiden IP-adressen of reeksen van reverse proxy's waarvan solidtime de
+      X-Forwarded-*-headers mag vertrouwen. De standaardwaarde dekt proxy's die als andere Home
+      Assistant-app draaien.
+  registration:
+    name: Registratie
+    description: >-
+      Wie een account mag aanmaken: invite-only (mensen die voor een organisatie zijn uitgenodigd),
+      off (niemand; alleen het eerste account bestaat) of on (iedereen die solidtime kan bereiken).
+  admin_name:
+    name: Naam beheerder
+    description: Weergavenaam van het eerste account. Wordt alleen gebruikt zolang solidtime nog geen gebruikers heeft.
+  admin_email:
+    name: E-mailadres beheerder
+    description: >-
+      E-mailadres van het eerste account, waarmee je inlogt. Wordt alleen gebruikt zolang
+      solidtime nog geen gebruikers heeft; na de eerste start mag je het leegmaken.
+  admin_password:
+    name: Wachtwoord beheerder
+    description: >-
+      Wachtwoord van het eerste account, minimaal 8 tekens. Wordt alleen gebruikt zolang
+      solidtime nog geen gebruikers heeft; wijzig het daarna in solidtime zelf.
+  super_admins:
+    name: Superbeheerders
+    description: >-
+      Kommagescheiden e-mailadressen van accounts die het beheerpaneel van de installatie op
+      /admin mogen openen.
+  mail_host:
+    name: Mailserver
+    description: >-
+      Hostnaam van de SMTP-server waarmee solidtime e-mail verstuurt, bijvoorbeeld
+      smtp.example.com. Laat leeg om e-mail uit te schakelen; berichten verschijnen dan in het logboek.
+  mail_port:
+    name: Poort mailserver
+    description: Poort van de SMTP-server. Standaard 587.
+  mail_encryption:
+    name: Versleuteling mail
+    description: tls voor STARTTLS (meestal poort 587), ssl voor directe TLS (meestal poort 465) of none.
+  mail_username:
+    name: Gebruikersnaam mail
+    description: Gebruikersnaam voor de SMTP-server, als die er een vereist.
+  mail_password:
+    name: Wachtwoord mail
+    description: Wachtwoord voor de SMTP-server, als die er een vereist.
+  mail_from_address:
+    name: Afzenderadres
+    description: Adres waarvandaan solidtime e-mails verstuurt, bijvoorbeeld solidtime@example.com.
+  gotenberg_url:
+    name: Adres van Gotenberg
+    description: >-
+      Adres van een Gotenberg-server, bijvoorbeeld http://192.168.1.10:3000, voor het exporteren
+      van rapporten als pdf. Laat leeg om pdf-export uit te schakelen.
+network:
+  8000/tcp: Webinterface van solidtime
