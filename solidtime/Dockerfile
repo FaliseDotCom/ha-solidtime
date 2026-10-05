@@ -1,4 +1,4 @@
-# solidtime with a bundled PostgreSQL server, packaged as a Home Assistant app.
+# Solidtime with a bundled PostgreSQL server, packaged as a Home Assistant app.
 #
 # The upstream image is pinned to an exact release. Bump this tag and the
 # `version` in config.yaml together (see .docs/releasing.md).
@@ -25,7 +25,7 @@ STOPSIGNAL SIGTERM
 
 # The Supervisor shows the app as starting until this check passes, and its
 # watchdog restarts the app when the check fails. The web server only starts
-# once the database is migrated, so a healthy endpoint means solidtime is ready.
+# once the database is migrated, so a healthy endpoint means Solidtime is ready.
 # The health-check routes are exempt from the trusted host check.
 HEALTHCHECK --start-period=10m --interval=30s --timeout=10s --retries=3 \
   CMD [ "curl", "--fail", "--silent", "--output", "/dev/null", "http://127.0.0.1:8000/health-check/up" ]

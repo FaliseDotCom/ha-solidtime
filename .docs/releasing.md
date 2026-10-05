@@ -1,19 +1,19 @@
 # Releasing
 
-The app version always equals the solidtime version it contains, so users see the solidtime
+The app version always equals the Solidtime version it contains, so users see the Solidtime
 version in Home Assistant.
 
-## Updating to a new solidtime release
+## Updating to a new Solidtime release
 
-This repository does not contain solidtime's source code. The app is built from the official
-solidtime Docker image, so updating solidtime means pointing the app at a newer image tag.
+This repository does not contain Solidtime's source code. The app is built from the official
+Solidtime Docker image, so updating Solidtime means pointing the app at a newer image tag.
 
 ### With the update script
 
 From the repository root, in Git Bash or any other Bash shell, with Docker running:
 
 ```bash
-scripts/update-solidtime.sh          # latest solidtime release
+scripts/update-solidtime.sh          # latest Solidtime release
 scripts/update-solidtime.sh 0.22.0   # a specific release
 ```
 
@@ -33,14 +33,14 @@ and commit, tag and push.
 
    Docker Hub tags have no `v` prefix; GitHub release tags do (`v0.22.0`).
 
-2. Read the [solidtime release notes](https://github.com/solidtime-io/solidtime/releases)
+2. Read the [Solidtime release notes](https://github.com/solidtime-io/solidtime/releases)
    for changes to the Docker image, especially new environment variables, a changed
    `start-container` script or supervisord configuration, or a new base Debian version.
 3. Update the version in three places:
    - the `FROM` line in `solidtime/Dockerfile`
    - `version` in `solidtime/config.yaml`
-   - the solidtime badge in `README.md`
-4. Add an entry at the top of `solidtime/CHANGELOG.md` that links to the solidtime release
+   - the Solidtime badge in `README.md`
+4. Add an entry at the top of `solidtime/CHANGELOG.md` that links to the Solidtime release
    notes.
 5. Test as described in [Development](development.md). Always test an upgrade from the
    previous release, not only a fresh install: start the old version with data, then the new
@@ -50,8 +50,8 @@ and commit, tag and push.
 
 ## App-only changes
 
-For a change to the app itself without a new solidtime release, add a fourth version
-segment: `0.21.0` becomes `0.21.0.1`, then `0.21.0.2`. The next solidtime release resets it.
+For a change to the app itself without a new Solidtime release, add a fourth version
+segment: `0.21.0` becomes `0.21.0.1`, then `0.21.0.2`. The next Solidtime release resets it.
 
 ## Changes to watch for
 

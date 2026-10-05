@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Updates the app to a new solidtime release: checks the upstream image, bumps
+# Updates the app to a new Solidtime release: checks the upstream image, bumps
 # the version everywhere it appears, adds a changelog entry and builds the
 # image. It never commits or pushes; it prints the git commands to run afterwards.
 #
 # Usage: scripts/update-solidtime.sh [version]
-#   version  solidtime version such as 0.22.0. Defaults to the latest GitHub release.
+#   version  Solidtime version such as 0.22.0. Defaults to the latest GitHub release.
 
 set -euo pipefail
 
@@ -59,14 +59,14 @@ update_files()
 
   sed -i "s|^FROM $IMAGE:$old\$|FROM $IMAGE:$new|" "$DOCKERFILE"
   sed -i "s|^version: \".*\"\$|version: \"$new\"|" "$CONFIG"
-  sed -i "s|solidtime $old|solidtime $new|; s|solidtime-$old-|solidtime-$new-|" "$README"
+  sed -i "s|Solidtime $old|Solidtime $new|; s|Solidtime-$old-|Solidtime-$new-|" "$README"
 }
 
 # Inserts the new entry above the first existing release heading.
 add_changelog_entry()
 {
   local new="$1"
-  local entry="## $new\n\n- solidtime $new. See the [solidtime $new release notes]($RELEASES_URL/v$new).\n"
+  local entry="## $new\n\n- Solidtime $new. See the [Solidtime $new release notes]($RELEASES_URL/v$new).\n"
 
   awk -v entry="$entry" '!done && /^## / { printf "%s\n", entry; done = 1 } { print }' "$CHANGELOG" > "$CHANGELOG.tmp"
   mv "$CHANGELOG.tmp" "$CHANGELOG"
@@ -84,7 +84,7 @@ main()
 
   if ! [[ "$new" =~ $VERSION_PATTERN ]]
   then
-    fatal "'$new' is not a solidtime version such as 0.22.0."
+    fatal "'$new' is not a Solidtime version such as 0.22.0."
   fi
 
   local old
@@ -92,17 +92,17 @@ main()
 
   if [ "$old" = "$new" ]
   then
-    echo "Already on solidtime $new."
+    echo "Already on Solidtime $new."
     exit 0
   fi
 
-  # solidtime migrates the database on start, so an older image cannot run on it.
+  # Solidtime migrates the database on start, so an older image cannot run on it.
   if [ "$(printf '%s\n' "$old" "$new" | sort -V | tail -n 1)" = "$old" ]
   then
-    fatal "solidtime $new is older than the current $old; downgrades are not supported."
+    fatal "Solidtime $new is older than the current $old; downgrades are not supported."
   fi
 
-  echo "Updating solidtime $old -> $new"
+  echo "Updating Solidtime $old -> $new"
   check_image "$new"
   update_files "$old" "$new"
   add_changelog_entry "$new"
@@ -112,14 +112,14 @@ main()
 
   cat <<EOT
 
-solidtime $old -> $new prepared. Next:
+Solidtime $old -> $new prepared. Next:
 
   1. Read the release notes: $RELEASES_URL/v$new
   2. Test an upgrade on existing data (see .docs/development.md).
   3. Review the diff and release:
 
        git diff
-       git commit -am "Update solidtime to $new"
+       git commit -am "Update Solidtime to $new"
        git tag $new
        git push && git push --tags
 EOT

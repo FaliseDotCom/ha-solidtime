@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Starts the solidtime app: PostgreSQL first, then the database migrations,
-# then the solidtime web server, scheduler and queue worker under supervisord.
-# On SIGTERM or SIGINT, solidtime is stopped before PostgreSQL so the database
+# Starts the Solidtime app: PostgreSQL first, then the database migrations,
+# then the Solidtime web server, scheduler and queue worker under supervisord.
+# On SIGTERM or SIGINT, Solidtime is stopped before PostgreSQL so the database
 # always shuts down cleanly.
 
 set -euo pipefail
@@ -48,7 +48,7 @@ option()
   jq -r --arg key "$1" '.[$key] // empty' "$OPTIONS_FILE"
 }
 
-# Runs a command as the solidtime user, keeping the exported environment.
+# Runs a command as the `laravel` user, keeping the exported environment.
 as_app()
 {
   HOME="$APP_DIR" setpriv --reuid="$APP_USER" --regid="$APP_USER" --init-groups -- "$@"
@@ -166,7 +166,7 @@ prepare_secrets()
   PASSPORT_PUBLIC_KEY=$(secret oauth-public.key openssl pkey -pubout -in "$SECRETS_DIR/oauth-private.key")
 }
 
-# Points solidtime's file storage (avatars, imports, exports) at persistent
+# Points Solidtime's file storage (avatars, imports, exports) at persistent
 # storage. Caches and compiled views stay in the container.
 prepare_storage()
 {
@@ -206,7 +206,7 @@ start_database()
 
   log "Starting PostgreSQL."
   # A separate session keeps PostgreSQL out of the process group, so a stop
-  # signal sent to the whole group cannot stop it before solidtime.
+  # signal sent to the whole group cannot stop it before Solidtime.
   # It is started directly rather than through as_postgres, so that $! is the
   # PostgreSQL process itself and not a subshell.
   HOME="$PG_DATA_DIR" setsid setpriv --reuid=postgres --regid=postgres --init-groups --     "$PG_BIN/postgres" -D "$PG_DATA_DIR" -c config_file="$PG_CONFIG" &
@@ -245,7 +245,7 @@ stop_database()
   PG_PID=0
 }
 
-# Creates the solidtime database and user on first start. The password is
+# Creates the Solidtime database and user on first start. The password is
 # generated once and kept in /data.
 prepare_database()
 {
@@ -260,7 +260,7 @@ prepare_database()
 
   if [ -z "$(sql "SELECT 1 FROM pg_database WHERE datname = '$DB_NAME';")" ]
   then
-    log "Creating the solidtime database."
+    log "Creating the Solidtime database."
     sql "CREATE DATABASE $DB_NAME OWNER $DB_USER;"
   fi
 
@@ -285,7 +285,7 @@ refresh_collation()
   sql "ALTER DATABASE $DB_NAME REFRESH COLLATION VERSION;" > /dev/null
 }
 
-# Exports the solidtime configuration. Everything in /var/www/html/.env from
+# Exports the Solidtime configuration. Everything in /var/www/html/.env from
 # the image is overridden here, because real environment variables win.
 export_environment()
 {
@@ -303,7 +303,7 @@ export_environment()
   export DB_CONNECTION=pgsql DB_HOST=127.0.0.1 DB_PORT=5432 DB_SSLMODE=disable
   export DB_DATABASE="$DB_NAME" DB_USERNAME="$DB_USER" DB_PASSWORD
   export QUEUE_CONNECTION=database FILESYSTEM_DISK=local PUBLIC_FILESYSTEM_DISK=public
-  export MAIL_FROM_NAME=solidtime MAIL_FROM_ADDRESS="${MAIL_FROM_ADDRESS:-solidtime@localhost}"
+  export MAIL_FROM_NAME=Solidtime MAIL_FROM_ADDRESS="${MAIL_FROM_ADDRESS:-solidtime@localhost}"
 
   if [ -n "$MAIL_HOST" ]
   then
@@ -342,7 +342,7 @@ user_count()
   sql "SELECT COUNT(*) FROM users WHERE is_placeholder = false;" "$DB_NAME"
 }
 
-# solidtime does not allow sign-up by default, so a fresh install without
+# Solidtime does not allow sign-up by default, so a fresh install without
 # administrator credentials would leave nobody able to log in.
 create_admin_on_first_start()
 {
@@ -360,7 +360,7 @@ create_admin_on_first_start()
   if [ -z "$ADMIN_EMAIL" ] || [ -z "$ADMIN_PASSWORD" ]
   then
     stop_database
-    fatal "No solidtime users exist yet. Set admin_email and admin_password in the app configuration, then start the app again."
+    fatal "No Solidtime users exist yet. Set admin_email and admin_password in the app configuration, then start the app again."
   fi
 
   log "First start: creating the account '$ADMIN_EMAIL'."
@@ -431,7 +431,7 @@ ensure_oauth_clients()
 
 start_app()
 {
-  log "Starting solidtime at $APP_URL"
+  log "Starting Solidtime at $APP_URL"
   /usr/bin/supervisord --configuration "$SUPERVISOR_CONFIG" &
   APP_PID=$!
 }
@@ -464,7 +464,7 @@ supervise()
     PG_PID=0
     log "PostgreSQL stopped unexpectedly."
   else
-    log "solidtime stopped unexpectedly."
+    log "Solidtime stopped unexpectedly."
   fi
 
   kill -TERM "$APP_PID" 2> /dev/null || true

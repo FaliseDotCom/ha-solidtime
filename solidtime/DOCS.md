@@ -1,8 +1,8 @@
-# solidtime
+# Solidtime
 
-[solidtime](https://www.solidtime.io/) is a modern, open-source time tracker. Track time
+[Solidtime](https://www.solidtime.io/) is a modern, open-source time tracker. Track time
 against clients, projects and tasks, set billable rates, and turn it into reports. This app
-runs solidtime on your Home Assistant server, together with its own PostgreSQL database, so
+runs Solidtime on your Home Assistant server, together with its own PostgreSQL database, so
 there is nothing else to install.
 
 ## Requirements
@@ -11,7 +11,7 @@ there is nothing else to install.
 - A 64-bit system: `amd64` (most PCs and NUCs) or `aarch64` (Raspberry Pi 4 or 5, and
   most other ARM boards).
 - Around 2.5 GB of free disk space for the app, plus room for your data.
-- Around 400 MB of free memory while solidtime is running.
+- Around 400 MB of free memory while Solidtime is running.
 
 The first installation builds the app on your own device. Expect it to take a few minutes,
 or longer on a Raspberry Pi.
@@ -25,21 +25,21 @@ or longer on a Raspberry Pi.
    https://github.com/FaliseDotCom/ha-solidtime
    ```
 
-2. Find **solidtime** in the app store and select **Install**.
+2. Find **Solidtime** in the app store and select **Install**.
 3. Open the **Configuration** tab. Check `app_url`, and set `admin_email` and
    `admin_password`. See [First start](#first-start).
 4. Go back to the **Info** tab, turn on **Watchdog**, and select **Start**.
 5. Open the **Log** tab. The first start takes a minute or two while the database is
-   created. solidtime is ready when the log shows `success: web entered RUNNING state`.
+   created. Solidtime is ready when the log shows `success: web entered RUNNING state`.
 
 ## First start
 
-solidtime does not let visitors sign up by default, so the app creates the first account
+Solidtime does not let visitors sign up by default, so the app creates the first account
 for you. Before the very first start, fill in:
 
 | Option           | Value                                             |
 | ---------------- | ------------------------------------------------- |
-| `app_url`        | The address you open solidtime on; see below      |
+| `app_url`        | The address you open Solidtime on; see below      |
 | `admin_name`     | Your name                                         |
 | `admin_email`    | Your email address; you log in with it            |
 | `admin_password` | A password of 8+ characters                       |
@@ -48,21 +48,21 @@ for you. Before the very first start, fill in:
 The account is created with its own organization, in the Home Assistant time zone, and its
 email address is marked as verified.
 
-`admin_name`, `admin_email` and `admin_password` are only read while solidtime has no users.
-Once you have logged in, change the password on your profile page in solidtime, then clear `admin_password` in the app configuration so it is
+`admin_name`, `admin_email` and `admin_password` are only read while Solidtime has no users.
+Once you have logged in, change the password on your profile page in Solidtime, then clear `admin_password` in the app configuration so it is
 no longer stored there. Changing these options later does **not** change the existing
 account.
 
 If you start the app without these options on a fresh install, it stops with a message in
 the log asking you to set them.
 
-## Opening solidtime
+## Opening Solidtime
 
-solidtime runs on its own port, **8000**, separate from the Home Assistant interface.
+Solidtime runs on its own port, **8000**, separate from the Home Assistant interface.
 
-### The solidtime address
+### The Solidtime address
 
-solidtime needs to know the address you open it on. It uses that address in emails and
+Solidtime needs to know the address you open it on. It uses that address in emails and
 links, and refuses requests on any other host name, which protects against host header
 attacks on, for example, password reset links. Set `app_url` to the address you type in the
 browser:
@@ -71,8 +71,8 @@ browser:
 app_url: http://homeassistant.local:8000
 ```
 
-If you also reach solidtime on other names, such as its IP address, list them in
-[`trusted_hosts`](#option-trusted_hosts). On a host name that is in neither, solidtime shows
+If you also reach Solidtime on other names, such as its IP address, list them in
+[`trusted_hosts`](#option-trusted_hosts). On a host name that is in neither, Solidtime shows
 *This hostname is not configured for this instance*.
 
 ### From the app page
@@ -84,28 +84,28 @@ host name in that address is in `app_url` or `trusted_hosts`.
 
 ### On your phone
 
-In the Companion app, go to **Settings** > **Apps** > **solidtime** and select **Open web
-UI**. solidtime opens in your phone's browser. To keep it one tap away, use your browser's
+In the Companion app, go to **Settings** > **Apps** > **Solidtime** and select **Open web
+UI**. Solidtime opens in your phone's browser. To keep it one tap away, use your browser's
 **Add to home screen** option.
 
 When you are away from home and connect through Home Assistant Cloud or another remote URL,
 port 8000 is usually not reachable. Set up [remote access](#remote-access) if you want to use
-solidtime away from home.
+Solidtime away from home.
 
 ### In the Home Assistant sidebar (optional)
 
 This app does not use Home Assistant's built-in sidebar integration (called *ingress*),
-because solidtime cannot run under the changing sub-path that ingress uses. You can still add
-solidtime to the sidebar with a **Webpage** dashboard:
+because Solidtime cannot run under the changing sub-path that ingress uses. You can still add
+Solidtime to the sidebar with a **Webpage** dashboard:
 
 1. Go to **Settings** > **Dashboards** and select **Add dashboard**.
-2. Choose **Webpage** and enter solidtime's address, the same as `app_url`.
-3. Give it a title such as *solidtime*, pick an icon such as `mdi:timer-outline`, and keep
+2. Choose **Webpage** and enter Solidtime's address, the same as `app_url`.
+3. Give it a title such as *Solidtime*, pick an icon such as `mdi:timer-outline`, and keep
    **Show in sidebar** turned on.
 
 Two things to keep in mind:
 
-- The browser loads solidtime directly, so the sidebar entry only works where solidtime's
+- The browser loads Solidtime directly, so the sidebar entry only works where Solidtime's
   address is reachable, normally on your home network.
 - If you open Home Assistant over `https://`, the address of the dashboard must use
   `https://` too, or the browser blocks the page. Use your [remote access](#remote-access)
@@ -113,8 +113,8 @@ Two things to keep in mind:
 
 ### Desktop app and browser extensions
 
-The [solidtime desktop app](https://github.com/solidtime-io/solidtime-desktop) and the
-solidtime browser extensions for
+The [Solidtime desktop app](https://github.com/solidtime-io/solidtime-desktop) and the
+Solidtime browser extensions for
 [Chrome](https://chromewebstore.google.com/detail/solidtime/hpanifeankiobmgbemnhjmhpjeebdhdd)
 and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/solidtime/) work with this app.
 Each needs its own OAuth client, which the app creates on first start. Their IDs are printed
@@ -130,8 +130,8 @@ Start the desktop app or open the extension, select **Instance Settings**, and e
 
 ### API tokens
 
-API tokens for scripts and integrations are created on your profile page in solidtime, under
-**API Tokens**. The app creates the OAuth client that solidtime needs for this on first start.
+API tokens for scripts and integrations are created on your profile page in Solidtime, under
+**API Tokens**. The app creates the OAuth client that Solidtime needs for this on first start.
 
 ## Configuration
 
@@ -152,17 +152,17 @@ Restart the app after changing any option.
 
 ### Option: `app_url`
 
-The address you open solidtime on, without a path, for example
+The address you open Solidtime on, without a path, for example
 `http://homeassistant.local:8000` or `https://time.example.com`. See
-[The solidtime address](#the-solidtime-address).
+[The Solidtime address](#the-solidtime-address).
 
-When it starts with `https://`, solidtime builds every link with `https://` and marks its
+When it starts with `https://`, Solidtime builds every link with `https://` and marks its
 cookies as secure, so logging in only works over HTTPS. Use an `https://` address only when
-solidtime sits behind a proxy that provides HTTPS; see [Remote access](#remote-access).
+Solidtime sits behind a proxy that provides HTTPS; see [Remote access](#remote-access).
 
 ### Option: `trusted_hosts`
 
-A comma-separated list of extra host names solidtime may be reached on, besides the one in
+A comma-separated list of extra host names Solidtime may be reached on, besides the one in
 `app_url`. Subdomains of the `app_url` host are always allowed. Use `*.example.com` to allow
 every subdomain of another domain:
 
@@ -175,7 +175,7 @@ Emails and links always use `app_url`, whichever host name you used.
 ### Option: `trusted_proxies`
 
 A comma-separated list of IP addresses or ranges (CIDR) of reverse proxies that sit in
-front of solidtime. solidtime only trusts the `X-Forwarded-*` headers from these addresses,
+front of Solidtime. Solidtime only trusts the `X-Forwarded-*` headers from these addresses,
 which it needs to know the visitor's real IP address and whether the original request used
 HTTPS.
 
@@ -185,15 +185,15 @@ elsewhere on your network.
 
 ### Option: `registration`
 
-Who may create a solidtime account:
+Who may create a Solidtime account:
 
 | Value         | Meaning                                                                |
 | ------------- | ---------------------------------------------------------------------- |
 | `invite-only` | Only people who were invited to an organization. The default.          |
 | `off`         | Nobody. Only the accounts that already exist can log in.               |
-| `on`          | Anyone who can reach solidtime. Only use this on your home network.    |
+| `on`          | Anyone who can reach Solidtime. Only use this on your home network.    |
 
-To add someone to your team, invite them from **Members** in solidtime. Invitations are sent
+To add someone to your team, invite them from **Members** in Solidtime. Invitations are sent
 by email, so set up a [mail server](#option-mail_host) first.
 
 With `on`, you may leave `admin_email` and `admin_password` empty and create the first
@@ -202,21 +202,21 @@ account on the sign-up page instead.
 ### Option: `admin_name`, `admin_email` and `admin_password`
 
 The name, email address and password (at least 8 characters) of the first account. Only
-used while solidtime has no users. See [First start](#first-start).
+used while Solidtime has no users. See [First start](#first-start).
 
 ### Option: `super_admins`
 
-A comma-separated list of email addresses. These accounts can open solidtime's instance
+A comma-separated list of email addresses. These accounts can open Solidtime's instance
 administration panel at `/admin`, which lists every user and organization on the server.
 Normal time tracking does not need it.
 
 ### Option: `mail_host`
 
-The SMTP server solidtime uses to send email, such as invitations, password reset links and
-reminders, for example `smtp.example.com`. Optional; without it solidtime sends no email and
+The SMTP server Solidtime uses to send email, such as invitations, password reset links and
+reminders, for example `smtp.example.com`. Optional; without it Solidtime sends no email and
 writes each message to the log instead.
 
-The other mail options set how solidtime connects:
+The other mail options set how Solidtime connects:
 
 | Option              | Meaning                                                    | Default             |
 | ------------------- | ---------------------------------------------------------- | ------------------- |
@@ -224,14 +224,14 @@ The other mail options set how solidtime connects:
 | `mail_encryption`   | `tls` (STARTTLS, port 587), `ssl` (port 465), or `none`    | `tls`               |
 | `mail_username`     | User name, if the server requires one                      | none                |
 | `mail_password`     | Password, if the server requires one                       | none                |
-| `mail_from_address` | Address solidtime sends from                               | `solidtime@localhost` |
+| `mail_from_address` | Address Solidtime sends from                               | `solidtime@localhost` |
 
 The mail options are hidden until you select **Show unused optional configuration options**
 on the **Configuration** tab.
 
 ### Option: `gotenberg_url`
 
-solidtime exports reports as PDF through [Gotenberg](https://gotenberg.dev/), a separate
+Solidtime exports reports as PDF through [Gotenberg](https://gotenberg.dev/), a separate
 document conversion server. It is not included in this app, because it needs a full web
 browser and office suite and would more than double the app's size. Without it, every other
 export format still works.
@@ -246,14 +246,14 @@ and set `gotenberg_url` to its address, for example `http://192.168.1.10:3000`.
 
 ### Port
 
-The **Network** section of the **Configuration** tab sets the port solidtime is published on.
+The **Network** section of the **Configuration** tab sets the port Solidtime is published on.
 Change it if port 8000 is already in use on your server, and update `app_url` to match. Clear
-it to stop publishing solidtime on your network entirely, for example when a proxy app is the
+it to stop publishing Solidtime on your network entirely, for example when a proxy app is the
 only way in.
 
 ## Remote access
 
-To use solidtime away from home, put it behind a reverse proxy that provides HTTPS, such as
+To use Solidtime away from home, put it behind a reverse proxy that provides HTTPS, such as
 the **Cloudflared** or **NGINX Proxy Manager** app, and point the proxy at:
 
 ```text
@@ -263,17 +263,17 @@ http://<your-home-assistant-ip>:8000
 Then:
 
 1. Set `app_url` to the public address, for example `https://time.example.com`. From then on,
-   use that address at home too: solidtime only accepts logins over HTTPS once `app_url`
+   use that address at home too: Solidtime only accepts logins over HTTPS once `app_url`
    uses `https://`.
 2. Make sure the proxy's address is in [`trusted_proxies`](#option-trusted_proxies). If
-   solidtime shows the proxy's IP address as the visitor's, the proxy is not trusted yet.
+   Solidtime shows the proxy's IP address as the visitor's, the proxy is not trusted yet.
 3. Turn on two-factor authentication for every account, on each user's profile page.
 
 Never expose port 8000 directly to the internet without HTTPS.
 
 ## Backups
 
-The app is included in Home Assistant backups. solidtime is stopped while the backup is made,
+The app is included in Home Assistant backups. Solidtime is stopped while the backup is made,
 so that the database is copied in a consistent state, and starts again afterwards. For a
 small database this takes well under a minute.
 
@@ -285,30 +285,30 @@ data back.
 
 ## Updates
 
-The app's version number is the solidtime version it contains. Before you update:
+The app's version number is the Solidtime version it contains. Before you update:
 
-1. Create a backup that includes solidtime. Database changes during an update cannot be
-   undone, and solidtime cannot be downgraded without restoring a backup.
-2. Read the [solidtime release notes](https://github.com/solidtime-io/solidtime/releases) for
+1. Create a backup that includes Solidtime. Database changes during an update cannot be
+   undone, and Solidtime cannot be downgraded without restoring a backup.
+2. Read the [Solidtime release notes](https://github.com/solidtime-io/solidtime/releases) for
    the versions you are skipping.
 
-solidtime upgrades its database automatically on the first start after an update.
+Solidtime upgrades its database automatically on the first start after an update.
 
 ## Troubleshooting
 
-Start with the **Log** tab of the app. solidtime and PostgreSQL both write to it, and
+Start with the **Log** tab of the app. Solidtime and PostgreSQL both write to it, and
 messages from the app itself start with `[solidtime-app]`.
 
-**"No solidtime users exist yet"**
+**"No Solidtime users exist yet"**
 : Set `admin_email` and `admin_password` and start the app again. See
   [First start](#first-start).
 
 **"This hostname is not configured for this instance"**
 : The host name in your browser's address bar is not in `app_url` or `trusted_hosts`. Add
-  it to `trusted_hosts`, or open solidtime on the `app_url` address.
+  it to `trusted_hosts`, or open Solidtime on the `app_url` address.
 
 **Logging in does nothing, or shows "Page expired"**
-: `app_url` starts with `https://`, but you opened solidtime over `http://`. Open it on the
+: `app_url` starts with `https://`, but you opened Solidtime over `http://`. Open it on the
   `https://` address, or change `app_url` back to `http://`.
 
 **The app fails to start right after installation**
@@ -339,16 +339,16 @@ messages from the app itself start with `[solidtime-app]`.
 ## Security
 
 - Use a long, unique password and turn on two-factor authentication.
-- Keep `registration` at `invite-only` or `off` when solidtime is reachable from outside
+- Keep `registration` at `invite-only` or `off` when Solidtime is reachable from outside
   your home network.
-- Only reach solidtime over HTTPS from the internet; see [Remote access](#remote-access).
+- Only reach Solidtime over HTTPS from the internet; see [Remote access](#remote-access).
 - The database is only reachable from inside the app; it is never published on your
-  network. Its password and solidtime's encryption keys are generated on first start and
+  network. Its password and Solidtime's encryption keys are generated on first start and
   stored in the app's private data.
 
 ## Support
 
 - Problems with this app:
   [open an issue](https://github.com/FaliseDotCom/ha-solidtime/issues).
-- Questions about using solidtime: [solidtime documentation](https://docs.solidtime.io/) and
-  [solidtime discussions](https://github.com/solidtime-io/solidtime/discussions).
+- Questions about using Solidtime: [Solidtime documentation](https://docs.solidtime.io/) and
+  [Solidtime discussions](https://github.com/solidtime-io/solidtime/discussions).
