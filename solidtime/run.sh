@@ -213,7 +213,7 @@ start_database()
   PG_PID=$!
 
   local waited=0
-  until "$PG_BIN/pg_isready" --host="$PG_SOCKET_DIR" --username=postgres --quiet
+  until as_postgres "$PG_BIN/pg_isready" --host="$PG_SOCKET_DIR" --quiet
   do
     if ! kill -0 "$PG_PID" 2> /dev/null
     then

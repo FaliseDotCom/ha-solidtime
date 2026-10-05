@@ -5,6 +5,10 @@ version the app contains; see the
 [Solidtime releases](https://github.com/solidtime-io/solidtime/releases) for changes in
 Solidtime itself.
 
+## 0.21.0.1
+
+- Stop PostgreSQL logging a failed login on every start.
+
 ## 0.21.0
 
 First release.

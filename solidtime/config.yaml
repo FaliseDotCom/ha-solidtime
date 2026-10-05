@@ -1,5 +1,5 @@
 name: Solidtime
-version: "0.21.0"
+version: "0.21.0.1"
 slug: solidtime
 description: Modern open-source time tracker for freelancers and teams, with a bundled database.
 url: https://github.com/FaliseDotCom/ha-solidtime/tree/main/solidtime
